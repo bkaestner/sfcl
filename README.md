@@ -58,8 +58,8 @@ implement a parser, and pretty print its result to HTML, LaTeX, Word.
 
 The syntax of a song:
 
-    song = line, { line }
-    line = block, { block , [line ending]} , double line ending
+    song = line, { line ending , line }
+    line = block, { block , [line ending]}
 
     block   = {spaces} , (clblock | cblock | lblock)
     clblock = cblock , lblock
@@ -70,7 +70,6 @@ The syntax of a song:
     spaces  = ? US-ASCII 32 ? | ? US-ASCII 9 ? (* spaces and tabs *)
 
     line ending = ["\r"] , "\n"
-    double line ending = line ending
 
 The grammar is given in pseudo-EBNF, except for `chord` and `lyrics`,
 which follow the regular expression syntax, e.g. a `chord` may not
