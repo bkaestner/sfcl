@@ -1,0 +1,68 @@
+name:                sfcl
+version:             0.1.0.0
+
+-- A short (one-line) description of the package.
+-- synopsis:
+
+-- A longer description of the package.
+-- description:
+
+-- The license under which the package is released.
+-- license:
+
+-- The file containing the license text.
+-- license-file:        LICENSE
+
+-- The package author(s).
+author:              Benjamin Kaestner
+
+-- An email address to which users can send suggestions, bug reports, and
+-- patches.
+maintainer:          benjamin.kaestner@gmail.com
+
+
+-- A copyright notice.
+-- copyright:
+
+-- category:
+
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+source-repository head
+  type: git
+  location: https://github.com/bkaestner/sfcl
+
+
+library
+  exposed-modules:     Text.SFCL
+
+  ghc-options:
+      -Wall
+  build-depends:       base >=4.7 && <4.8
+                     , attoparsec == 0.13.*
+
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+
+test-suite spec
+  type:
+      exitcode-stdio-1.0
+  ghc-options:
+      -Wall
+  hs-source-dirs:
+      test
+  main-is:
+      Spec.hs
+  build-depends:
+      base    == 4.*
+    , sfcl
+    , hspec   == 2.2.*
+    , hspec-attoparsec == 0.1.0.*
+    , attoparsec == 0.13.*
+    , bytestring == 0.10.4.*
+    , QuickCheck == 2.8.*
+  default-language:
+      Haskell2010
