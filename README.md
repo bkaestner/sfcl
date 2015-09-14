@@ -58,8 +58,8 @@ implement a parser, and pretty print its result to HTML, LaTeX, Word.
 
 The syntax of a song:
 
-    song = line, { line }
-    line = block, { block , [line ending]} , double line ending
+    song = line, { double line ending , line }
+    line = block, { block , [line ending]}
 
     block   = {spaces} , (clblock | cblock | lblock)
     clblock = cblock , lblock
