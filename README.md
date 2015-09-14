@@ -10,6 +10,7 @@ the favourite song of someone you know. You search for
     What is up with the chords they don't align anymore
          Eb               Bb
     when I copy them into Word?
+
                   Cm             Ab
     That's due to non mono-typed font-faces
          Eb               Bb
@@ -71,9 +72,9 @@ The syntax of a song:
     line ending = ["\r"] , "\n"
     double line ending = line ending
 
-The grammar is given in EBNF, except for `chord` and `lyrics`, which
-follow the regular expression syntax, e.g. a `chord` may not contain
-`\r`, `\n` or `}` and must use at least one character.
+The grammar is given in pseudo-EBNF, except for `chord` and `lyrics`,
+which follow the regular expression syntax, e.g. a `chord` may not
+contain `\r`, `\n` or `}` and must use at least one character.
 
 This concludes that the following to SFCL snippets would be parsed
 the same:
