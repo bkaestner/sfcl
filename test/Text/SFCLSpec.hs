@@ -95,13 +95,13 @@ instance Arbitrary Block where
     let lyrics  = trimmed
     case k of
       1 -> CLBlock <$> chord <*> lyrics
-      2 -> CBlock <$> chord
-      3 -> LBlock <$> lyrics
+      2 -> CBlock  <$> chord
+      3 -> LBlock  <$> lyrics
 
 toFormattedSong :: Song -> String
 toFormattedSong (Song xs) = unlines . map ln $ xs
   where
     ln (Line ls)     = unlines . map bl $ ls
     bl (CLBlock c l) = "@chord{" ++ c ++ "} " ++ l
-    bl (CBlock c) = "@chord{" ++ c ++ "}"
-    bl (LBlock l) = l
+    bl (CBlock c)    = "@chord{" ++ c ++ "}"
+    bl (LBlock l)    = l
