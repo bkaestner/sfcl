@@ -65,7 +65,7 @@ The syntax of a song:
     clblock = cblock , lblock
     cblock  = "@chord{" , chord , "}"
     lblock  = lyrics
-    chord   = [^\r\n\}]+
+    chord   = [^@\r\n\}]+
     lyrics  = {[^@\r\n] | "\@" } , lyrics
     spaces  = ? US-ASCII 32 ? | ? US-ASCII 9 ? (* spaces and tabs *)
 
