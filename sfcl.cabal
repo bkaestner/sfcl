@@ -36,7 +36,8 @@ source-repository head
 
 
 library
-  exposed-modules:     Text.SFCL
+  exposed-modules:     Text.SFCL,
+                       Text.SFCL.Song
 
   ghc-options:
       -Wall
