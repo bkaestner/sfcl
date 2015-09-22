@@ -1,5 +1,5 @@
 name:                sfcl
-version:             0.1.0.0
+version:             0.1.0.1
 
 -- A short (one-line) description of the package.
 -- synopsis:
@@ -31,8 +31,13 @@ extra-source-files:  README.md
 cabal-version:       >=1.10
 
 source-repository head
-  type: git
+  type:     git
   location: https://github.com/bkaestner/sfcl
+
+source-repository this
+  type:     git
+  location: https://github.com/bkaestner/sfcl
+  tag:      v0.1.0.1
 
 
 library
