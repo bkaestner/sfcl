@@ -1,5 +1,7 @@
 # A simple format for chords and lyrics
 
+[![Build Status](https://travis-ci.org/bkaestner/sfcl.svg?branch=master)](https://travis-ci.org/bkaestner/sfcl)
+
 ## The problem
 If you play music, you probably were asked at least once to play
 the favourite song of someone you know. You search for
