@@ -41,8 +41,9 @@ library
 
   ghc-options:
       -Wall
-  build-depends:       base >=4.7 && <4.9
-                     , attoparsec == 0.13.*
+  build-depends:
+        base >=4.7 && < 5
+      , attoparsec >= 0.12 && < 0.14
 
   hs-source-dirs:      src
   default-language:    Haskell2010
@@ -58,12 +59,12 @@ test-suite spec
   main-is:
       Spec.hs
   build-depends:
-      base    == 4.*
+      base    >= 4.7     && < 5
     , sfcl
-    , hspec   == 2.2.*
-    , hspec-attoparsec == 0.1.0.*
-    , attoparsec == 0.13.*
-    , bytestring == 0.10.4.*
-    , QuickCheck == 2.8.*
+    , hspec   >= 2.1     && < 2.3
+    , hspec-attoparsec
+    , attoparsec >= 0.12 && < 0.14
+    , bytestring >= 0.10 && < 0.11
+    , QuickCheck >= 2.8  && < 3
   default-language:
       Haskell2010
