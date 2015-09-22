@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Text.SFCLSpec (spec) where
+{-# OPTIONS_GHC -fno-warn-orphans #-} -- Arbitrary instances
+module Text.SFCL.SongSpec (spec) where
 import           Control.Applicative
 import           Data.Attoparsec.ByteString.Char8
 import           Data.ByteString.Char8 (ByteString)
