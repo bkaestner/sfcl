@@ -42,7 +42,8 @@ source-repository this
 
 library
   exposed-modules:     Text.SFCL,
-                       Text.SFCL.Song
+                       Text.SFCL.Song,
+                       Text.SFCL.Render.Song
 
   ghc-options:
       -Wall
