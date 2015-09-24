@@ -1,4 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
 -- |
 -- Module      : Text.SFCL.Render.Song
 -- Copyright   : (c) Benjamin Kästner 2015
