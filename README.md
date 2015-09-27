@@ -98,24 +98,24 @@ In both variants, a parser should end up with the following tree:
 
     SONG
      |- LINE
-     |   |- LBLOCK:  What is
+     |   |- LBLOCK:  "What is"
      |   |- CLBLOCK:
-     |   |   |- CBLOCK: Cm
-     |   |   |- LBLOCK: up with the chords they
+     |   |   |- CBLOCK: "Cm"
+     |   |   |- LBLOCK: "up with the chords they"
      |   |
      |   |- CLBLOCK:
-     |       |- CBLOCK: Ab
-     |       |- LBLOCK: don't align anymore
+     |       |- CBLOCK: "Ab"
+     |       |- LBLOCK: "don't align anymore"
      |
      |- LINE
-     |   |- LBLOCK:  when I
+     |   |- LBLOCK:  "when I"
      |   |- CLBLOCK:
-     |   |   |- CBLOCK: Eb
-     |   |   |- LBLOCK: copy them into
+     |   |   |- CBLOCK: "Eb"
+     |   |   |- LBLOCK: "copy them into"
      |   |
      |   |- CLBLOCK:
-     |       |- CBLOCK: Ab
-     |       |- LBLOCK: Word?
+     |       |- CBLOCK: "Ab"
+     |       |- LBLOCK: "Word?"
 
 This could now get formatted as HTML, LaTeX or even as monospaced
 text.
