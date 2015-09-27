@@ -60,18 +60,22 @@ implement a parser, and pretty print its result to HTML, LaTeX, Word.
 
 The syntax of a song:
 
-    song = line, { line ending , line }
-    line = block, { block , [line ending]}
+    song = line, { line-ending , line }
+    line = block, { block , [line-ending]}
 
     block   = {spaces} , (clblock | cblock | lblock)
     clblock = cblock , lblock
     cblock  = "@chord{" , chord , "}"
     lblock  = lyrics
-    chord   = [^@\r\n\}]+
-    lyrics  = {[^@\r\n] | "\@" } , lyrics
-    spaces  = ? US-ASCII 32 ? | ? US-ASCII 9 ? (* spaces and tabs *)
+    chord   = cword , { spaces, cword }
+    cword   = [^\s\@\}\{]+            (* no whitespace or @,{,} *)
+    words   = word  , { spaces, word  }
+    word    = \S+                     (* non-whitespace symbols *)
+    lyrics  = words
+    space   = " " | "\t"
+    spaces  = space, { spaces }
 
-    line ending = ["\r"] , "\n"
+    line-ending = ["\r"] , "\n"
 
 The grammar is given in pseudo-EBNF, except for `chord` and `lyrics`,
 which follow the regular expression syntax, e.g. a `chord` may not
