@@ -60,18 +60,22 @@ implement a parser, and pretty print its result to HTML, LaTeX, Word.
 
 The syntax of a song:
 
-    song = line, { line ending , line }
-    line = block, { block , [line ending]}
+    song = line, { line-ending , line }
+    line = block, { block , [line-ending]}
 
     block   = {spaces} , (clblock | cblock | lblock)
     clblock = cblock , lblock
     cblock  = "@chord{" , chord , "}"
     lblock  = lyrics
-    chord   = [^@\r\n\}]+
-    lyrics  = {[^@\r\n] | "\@" } , lyrics
-    spaces  = ? US-ASCII 32 ? | ? US-ASCII 9 ? (* spaces and tabs *)
+    chord   = cword , { spaces, cword }
+    cword   = [^\s\@\}\{]+            (* no whitespace or @,{,} *)
+    words   = word  , { spaces, word  }
+    word    = \S+                     (* non-whitespace symbols *)
+    lyrics  = words
+    space   = " " | "\t"
+    spaces  = space, { spaces }
 
-    line ending = ["\r"] , "\n"
+    line-ending = ["\r"] , "\n"
 
 The grammar is given in pseudo-EBNF, except for `chord` and `lyrics`,
 which follow the regular expression syntax, e.g. a `chord` may not
@@ -98,24 +102,24 @@ In both variants, a parser should end up with the following tree:
 
     SONG
      |- LINE
-     |   |- LBLOCK:  What is
+     |   |- LBLOCK:  "What is"
      |   |- CLBLOCK:
-     |   |   |- CBLOCK: Cm
-     |   |   |- LBLOCK: up with the chords they
+     |   |   |- CBLOCK: "Cm"
+     |   |   |- LBLOCK: "up with the chords they"
      |   |
      |   |- CLBLOCK:
-     |       |- CBLOCK: Ab
-     |       |- LBLOCK: don't align anymore
+     |       |- CBLOCK: "Ab"
+     |       |- LBLOCK: "don't align anymore"
      |
      |- LINE
-     |   |- LBLOCK:  when I
+     |   |- LBLOCK:  "when I"
      |   |- CLBLOCK:
-     |   |   |- CBLOCK: Eb
-     |   |   |- LBLOCK: copy them into
+     |   |   |- CBLOCK: "Eb"
+     |   |   |- LBLOCK: "copy them into"
      |   |
      |   |- CLBLOCK:
-     |       |- CBLOCK: Ab
-     |       |- LBLOCK: Word?
+     |       |- CBLOCK: "Ab"
+     |       |- LBLOCK: "Word?"
 
 This could now get formatted as HTML, LaTeX or even as monospaced
 text.
