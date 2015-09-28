@@ -60,8 +60,8 @@ implement a parser, and pretty print its result to HTML, LaTeX, Word.
 
 The syntax of a song:
 
-    song = line, { line-ending , line }
-    line = block, { block , [line-ending]}
+    song = line,  { line-ending, line-ending , line }
+    line = block, { line-ending, block }
 
     block   = {spaces} , (clblock | cblock | lblock)
     clblock = cblock , lblock
@@ -82,14 +82,16 @@ which follow the regular expression syntax, e.g. a `chord` may not
 contain `\r`, `\n` or `}` and must use at least one character.
 
 This concludes that the following to SFCL snippets would be parsed
-the same:
+the same, as SFCL ignores leading or trailing whitespace.
 
-    What is @chord{Cm} up with the chords they @chord{Ab} don't align anymore
+    What is
+    @chord{Cm} up with the chords they
+    @chord{Ab} don't align anymore
 
-    when I  @chord{Eb} copy them into @chord{Ab} Word?
+    when I
+    @chord{Eb} copy them into @chord{Ab} Word?
 
-And here's a variant that puts the chords first:
-
+<!-- -->
                What is
     @chord{Cm} up with the chords they
     @chord{Ab} don't align anymore
