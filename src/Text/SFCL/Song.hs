@@ -9,16 +9,22 @@
 --
 -- This module provides parsing according to the SFCL grammar:
 --
--- > song        = line, { line ending , line }
--- > line        = block, { block , [line ending]}
--- > block       = {spaces} , (clblock | cblock | lblock)
--- > clblock     = cblock , lblock
--- > cblock      = "@chord{" , chord , "}"
--- > lblock      = lyrics
--- > chord       = [^\r\n\}]+
--- > lyrics      = [^\r\n]+
--- > spaces      = ? US-ASCII 32 ? | ? US-ASCII 9 ? (* spaces and tabs *)
--- > line ending = ["\r"] , "\n"
+-- > song = line,  { line-ending, line-ending , line }
+-- > line = block, { line-ending, block }
+-- >
+-- > block   = {spaces} , (clblock | cblock | lblock)
+-- > clblock = cblock , lblock
+-- > cblock  = "@chord{" , chord , "}"
+-- > lblock  = lyrics
+-- > chord   = cword , { spaces, cword }
+-- > cword   = [^\s\@\}\{]+            (* no whitespace or @,{,} *)
+-- > words   = word  , { spaces, word  }
+-- > word    = \S+                     (* non-whitespace symbols *)
+-- > lyrics  = words
+-- > space   = " " | "\t"
+-- > spaces  = space, { spaces }
+-- >
+-- > line-ending = ["\r"] , "\n"
 --
 -- While the final grammar is still up to discussion, this should
 -- give a good first impression on what a SFCL is about. Also,
