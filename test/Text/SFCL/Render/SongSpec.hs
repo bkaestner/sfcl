@@ -1,17 +1,20 @@
 module Text.SFCL.Render.SongSpec (spec) where
+import Text.SFCL.SongSpec ()
 import           Control.Applicative (liftA2)
+import qualified Data.ByteString.Char8 as B
 import           Text.SFCL.Song
 import           Text.SFCL.Render.Song (renderSong)
 import           Test.Hspec hiding (shouldBe)
+import           Test.Hspec.Attoparsec
 import qualified Test.Hspec as H
 import           Test.QuickCheck
 
 -- The default variant of "shouldBe" uses ==.
--- However, newlines are mostly fine.
+-- This version however ignores whitespace.
 shouldBe :: String -> String -> Expectation
 shouldBe a' b' =
   let
-    f = unwords . lines
+    f = unwords . filter (not . null) . map (unwords . words) . lines
     a = f a'
     b = f b'
   in H.shouldBe a b
@@ -72,11 +75,16 @@ spec = describe "renderSong" $ do
           result = unlines $ map (\(c,l) -> "@chord{" ++ c ++ "} " ++ l) xs
         in renderSong song `shouldBe` result
 
-    it "should handle mixed lines" $
-      pendingWith "use rendered song in parser and assert identity"
+    it "should handle mixed lines" $ property $ \line ->
+      let
+        song = Song [line]
+        k = B.pack $ renderSong song
+      in k ~> songParser `shouldParse` song
 
   context "multiple lines" $
-    it "should handle random lines" $ pending
+    it "should handle random lines" $ property $ \song ->
+      let k = B.pack $ renderSong song
+      in k ~> songParser `shouldParse` song
 
 nonCommand :: Gen Char
 nonCommand = elements $ filter (`notElem` "@\r\n") [' '..'~']
