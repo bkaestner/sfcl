@@ -10,6 +10,7 @@
 module Text.SFCL.Render.Song (renderSong) where
 import Text.SFCL.Song
 
+-- | Renders a song to the canonical format.
 renderSong :: Song -> String
 renderSong (Song ls) = unlines $ map renderLine ls
 
