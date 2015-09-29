@@ -74,3 +74,19 @@ test-suite spec
     , QuickCheck >= 2.8  && < 3
   default-language:
       Haskell2010
+
+test-suite haddock
+  type:
+      exitcode-stdio-1.0
+  ghc-options:
+      -Wall
+  hs-source-dirs:
+      test
+  main-is:
+      Haddock.hs
+  build-depends:
+      base    >= 4.7     && < 5
+    , process
+    , regex-compat
+  default-language:
+      Haskell2010
